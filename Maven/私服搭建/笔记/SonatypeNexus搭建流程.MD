@@ -78,7 +78,8 @@ http://localhost:8081/
     </mirror>
   </mirrors>
  --> 
-
+<!-- mirrorOf中指定的是下方的仓库id，*表示所有仓库都使用该镜像地址，若为自己搭建的私服，不需要镜像地址也可以，私服中央仓库已配置了代理地址-->
+<!-- mirrors中的mirror并不是说在第一个找不到jar包去第二个找，只有当第一个无法连接时才会去找下一个-->
   <profiles>
 <profile>
   <!--ID用来确定该profile的唯一标识-->
@@ -115,7 +116,6 @@ http://localhost:8081/
 		<updatePolicy>always</updatePolicy>
       </snapshots>
     </repository>
-	<!--
 	<repository>
       <id>releases</id>
       <name>Nexus releases</name>
@@ -144,7 +144,6 @@ http://localhost:8081/
 		<updatePolicy>always</updatePolicy>
       </snapshots>
     </repository>
-	-->
   </repositories>
    <!-- 插件仓库列表 -->
   <pluginRepositories>
