@@ -56,16 +56,28 @@ http://localhost:8081/
       <password>www123321</password>
     </server>
   </servers>
-
+<!--
   <mirrors>
     <mirror>
         <id>nexus</id>
         <name>internal nexus repository</name>
-        <!--镜像采用配置好的组的地址-->
         <url>http://localhost:8081/repository/maven-central/</url>
-        <mirrorOf>!internal.repo,*</mirrorOf>
+        <mirrorOf>*</mirrorOf>
+    </mirror>
+	    <mirror>
+        <id>releases</id>
+        <name>releases nexus repository</name>
+        <url>http://localhost:8081/repository/maven-releases/</url>
+        <mirrorOf>*</mirrorOf>
+    </mirror>
+	    <mirror>
+        <id>snapshots</id>
+        <name>snapshots nexus repository</name>
+        <url>http://localhost:8081/repository/maven-snapshots/</url>
+        <mirrorOf>*</mirrorOf>
     </mirror>
   </mirrors>
+ --> 
 
   <profiles>
 <profile>
@@ -95,12 +107,44 @@ http://localhost:8081/
      <!-- 表示可以从这个仓库下载releases版本的构件-->  
       <releases>
         <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
       </releases>
      <!-- 表示可以从这个仓库下载snapshot版本的构件 -->  
       <snapshots>
         <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
       </snapshots>
     </repository>
+	<!--
+	<repository>
+      <id>releases</id>
+      <name>Nexus releases</name>
+      <url>http://localhost:8081/repository/maven-releases/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+	<repository>
+      <id>snapshots</id>
+      <name>Nexus snapshots</name>
+      <url>http://localhost:8081/repository/maven-snapshots/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
+      </releases> 
+      <snapshots>
+        <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+	-->
   </repositories>
    <!-- 插件仓库列表 -->
   <pluginRepositories>
@@ -111,9 +155,11 @@ http://localhost:8081/
       <layout>default</layout>
       <snapshots>
         <enabled>true</enabled>
+		<updatePolicy>always</updatePolicy>
       </snapshots>
       <releases>
          <enabled>true</enabled>
+		 <updatePolicy>always</updatePolicy>
       </releases>
     </pluginRepository>
   </pluginRepositories>
