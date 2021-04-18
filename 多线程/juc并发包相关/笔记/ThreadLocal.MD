@@ -653,3 +653,5 @@ public class ThreadLocal<T> {
 }
 ```
 - [ThreadLocal详解](https://www.cnblogs.com/fsmly/p/11020641.html)
+- [0x61c88647 斐波那契数列](https://zhuanlan.zhihu.com/p/40515974)
+- [哈希冲突的三种方法](https://blog.csdn.net/w4187402/article/details/103924269?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_baidulandingword-0&spm=1001.2101.3001.4242)
