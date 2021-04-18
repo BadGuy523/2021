@@ -650,4 +650,6 @@ public class ThreadLocal<T> {
             return supplier.get();
         }
     }
+}
 ```
+- [ThreadLocal详解](https://www.cnblogs.com/fsmly/p/11020641.html)
