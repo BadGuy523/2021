@@ -54,4 +54,5 @@ public class ArrayList<E> extends AbstractList<E> implements List<E>, RandomAcce
         }
         return -(low + 1);  // key not found
     }
+    // ArrayList用for循环遍历比iterator迭代器遍历快，LinkedList用iterator迭代器遍历比for循环遍历快
 ```
