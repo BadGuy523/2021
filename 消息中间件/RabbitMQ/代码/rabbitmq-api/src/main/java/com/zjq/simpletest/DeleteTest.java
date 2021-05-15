@@ -2,7 +2,7 @@ package com.zjq.simpletest;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.zjq.util.MqUtil;
+import com.zjq.util.SimpleMqUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -23,9 +23,9 @@ public class DeleteTest {
 
     public static void main(String[] args) throws IOException, TimeoutException {
         // 创建连接
-        Connection connection = MqUtil.instanceConnection();
+        Connection connection = SimpleMqUtil.instanceConnection();
         // 创建消息信道
-        Channel channel = MqUtil.instanceChannel(connection);
+        Channel channel = SimpleMqUtil.instanceChannel(connection);
         // 删除队列
         channel.queueDelete(QUEUE_NAME);
         // 删除交换机

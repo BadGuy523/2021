@@ -38,6 +38,11 @@ public class MyConsumer extends DefaultConsumer {
         String msg = new String(body, "UTF-8");
         logger.info("Received message : '" + msg + "'");
         logger.info("consumerTag : " + consumerTag );
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         logger.info("deliveryTag : " + envelope.getDeliveryTag() );
     }
 }

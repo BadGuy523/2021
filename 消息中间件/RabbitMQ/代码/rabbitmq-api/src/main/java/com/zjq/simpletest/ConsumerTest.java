@@ -3,7 +3,7 @@ package com.zjq.simpletest;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Consumer;
-import com.zjq.util.MqUtil;
+import com.zjq.util.SimpleMqUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,11 +29,18 @@ public class ConsumerTest {
     // 队列名称2
     private final static String QUEUE_NAME2 = "SIMPLE_QUEUE2";
 
+    /**
+     * 创建了两个队列，测试对于直连交换机，绑定键相同时，一条消息是否可以路由到两个队列；结论：可以
+     *
+     * @param args
+     * @throws IOException
+     * @throws TimeoutException
+     */
     public static void main(String[] args) throws IOException, TimeoutException {
         // 创建连接
-        Connection connection = MqUtil.instanceConnection();
+        Connection connection = SimpleMqUtil.instanceConnection();
         // 创建消息信道
-        Channel channel = MqUtil.instanceChannel(connection);
+        Channel channel = SimpleMqUtil.instanceChannel(connection);
         // 声明交换机(参数含义：交换机名称、交换机类型、是否持久化、是否自动删除、map参数)
         channel.exchangeDeclare(EXCHANGE_NAME,"direct",true,false,null);
         // 声明队列(参数含义：队列名称、是否持久化、是否独占、是否自动删除、map参数)

@@ -2,7 +2,7 @@ package com.zjq.simpletest;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
-import com.zjq.util.MqUtil;
+import com.zjq.util.SimpleMqUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,9 +21,9 @@ public class ProducerTest {
 
     public static void main(String[] args) throws Exception {
         // 创建连接
-        Connection connection = MqUtil.instanceConnection();
+        Connection connection = SimpleMqUtil.instanceConnection();
         // 创建消息信道
-        Channel channel = MqUtil.instanceChannel(connection);
+        Channel channel = SimpleMqUtil.instanceChannel(connection);
         // 消息内容
         String msg = "Hello world, Rabbit MQ";
         // 发布消息（参数含义：交换机名称、路由键、基础参数，消息体）

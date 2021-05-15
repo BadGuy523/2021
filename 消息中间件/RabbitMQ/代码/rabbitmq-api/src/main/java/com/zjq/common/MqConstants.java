@@ -8,13 +8,18 @@ package com.zjq.common;
   */
 public interface MqConstants {
 
+    // 本机ip
     String LOCAL_IP = "192.168.160.130";
 
+    // 默认端口
     Integer DEFAULT_LISTEN_PORT = 5672;
 
+    // 虚拟host名称
     String VIRTUAL_HOST = "/";
 
+    // 用户名
     String USER_NAME = "admin";
 
+    // 密码
     String PASS_WORD = "admin";
 }
