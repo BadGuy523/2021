@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ribbon-client
+ribbon-server:
+  ribbon:
+    listOfServers: localhost:8080,localhost:8082
+server:
+  port: 9090
