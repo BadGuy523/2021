@@ -4,5 +4,7 @@ spring:
 ribbon-server:
   ribbon:
     listOfServers: localhost:8080,localhost:8082
+#    NFLoadBalancerPingClassName: com.netflix.loadbalancer.PingUrl
 server:
   port: 9090
+

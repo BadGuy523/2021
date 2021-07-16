@@ -10,8 +10,10 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>ribbon-server</module>
         <module>ribbon-client</module>
+        <module>feign-client</module>
+        <module>ribbon-api</module>
+        <module>ribbon-server</module>
     </modules>
 
     <properties>
@@ -20,7 +22,16 @@
         <java.version>1.8</java.version>
         <maven.compile.plugin.version>3.5.1</maven.compile.plugin.version>
         <maven.compile.surefire.version>2.20</maven.compile.surefire.version>
+        <feign.okhttp>11.2</feign.okhttp>
+        <ribbon.api>1.0.0</ribbon.api>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 
     <dependencyManagement>
         <dependencies>
@@ -36,6 +47,24 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
                 <version>${spring.cloud.starter.netflix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
+                <version>${spring.cloud.starter.netflix.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-okhttp</artifactId>
+                <version>${feign.okhttp}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.demo</groupId>
+                <artifactId>ribbon-api</artifactId>
+                <version>${ribbon.api}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
