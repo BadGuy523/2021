@@ -14,11 +14,12 @@
         <module>feign-client</module>
         <module>ribbon-api</module>
         <module>ribbon-server</module>
+        <module>eureka-server</module>
     </modules>
 
     <properties>
         <spring.boot.version>2.3.0.RELEASE</spring.boot.version>
-        <spring.cloud.starter.netflix.version>2.2.3.RELEASE</spring.cloud.starter.netflix.version>
+        <spring.cloud.starter.netflix.version>Hoxton.SR4</spring.cloud.starter.netflix.version>
         <java.version>1.8</java.version>
         <maven.compile.plugin.version>3.5.1</maven.compile.plugin.version>
         <maven.compile.surefire.version>2.20</maven.compile.surefire.version>
@@ -45,15 +46,29 @@
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+                <artifactId>spring-cloud-dependencies</artifactId>
                 <version>${spring.cloud.starter.netflix.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>${spring.cloud.starter.netflix.version}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>-->
+<!--                <version>${spring.cloud.starter.netflix.version}</version>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+<!--                <version>${spring.cloud.starter.netflix.version}</version>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>org.springframework.cloud</groupId>-->
+<!--                <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>-->
+<!--                <version>${spring.cloud.starter.netflix.version}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>io.github.openfeign</groupId>

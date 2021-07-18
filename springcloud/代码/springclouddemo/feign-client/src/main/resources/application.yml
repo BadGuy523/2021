@@ -17,3 +17,7 @@ feign:
   compression:
     request:
       enabled: true
+
+logging:
+  level:
+    com.demo.client.DemoFeignClient: debug
