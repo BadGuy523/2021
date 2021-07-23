@@ -1,6 +1,14 @@
 spring:
   application:
     name: ribbon-client
+  rabbitmq:
+    host: 192.168.160.130
+    port: 5672
+    username: admin
+    password: admin
+  cloud:
+    bus:
+      enabled: true
 #ribbon-server:
 #  ribbon:
 #    listOfServers: localhost:8080,localhost:8082

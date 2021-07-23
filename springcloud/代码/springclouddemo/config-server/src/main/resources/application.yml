@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/BadGuy523/SpringCloudConfig.git
+          username: BadGuy523
+          password: "5whatthebadguy"
+          force-pull: true
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+      refresh:
+        enabled: true
+
+  rabbitmq:
+    host: 192.168.160.130
+    port: 5672
+    username: admin
+    password: admin
+server:
+  port: 6060
+# 提供一个端点刷新配置 git的webhook回调会在post加内容，导致无法刷新  https://blog.csdn.net/m0_37556444/article/details/82812816
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

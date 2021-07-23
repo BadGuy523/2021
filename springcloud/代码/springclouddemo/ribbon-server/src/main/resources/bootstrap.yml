@@ -1,0 +1,7 @@
+# 配置中心需在bootstrap中配置，spring先加载的bootstrapcontext，先指明要获取远端配置
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server

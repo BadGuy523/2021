@@ -1,7 +1,22 @@
 spring:
   application:
     name: ribbon-server
-
+  rabbitmq:
+    host: 192.168.160.130
+    port: 5672
+    username: admin
+    password: admin
+  cloud:
+    bus:
+      enabled: true
 server:
   port: 8080
+
+# 提供一个端点刷新配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+
 
