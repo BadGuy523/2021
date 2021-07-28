@@ -18,6 +18,16 @@ public class DemoController implements DemoApi {
 
     @Override
     public String test() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "name："+name;
+    }
+
+    @Override
+    public String test2() {
         return "name："+name;
     }
 

@@ -14,10 +14,11 @@ public class DemoOpenFeignController {
     @Autowired
     private DemoFeignClient demoFeignClient;
 
-//    @GetMapping("/test")
-//    public String test() {
+    @GetMapping("/test2")
+    public String test2() {
 //        return myFeignClient.test();
-//    }
+        return demoFeignClient.test2();
+    }
 
     @GetMapping("/test")
     public String test() {

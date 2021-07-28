@@ -2,9 +2,9 @@ spring:
   application:
     name: feign-client
 
-ribbon-server:
-  ribbon:
-    listOfServers: localhost:8080,localhost:8082
+#ribbon-server:
+#  ribbon:
+#    listOfServers: localhost:8080,localhost:8082
 
 server:
   port: 7070
@@ -17,7 +17,44 @@ feign:
   compression:
     request:
       enabled: true
+  hystrix:
+    enabled: true
 
 logging:
   level:
     com.demo.client.DemoFeignClient: debug
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+    DemoFeignClient#test2():
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          semaphore:
+            maxConcurrentRequests: 10
+    DemoFeignClient#test():
+      execution:
+        isolation:
+          strategy: THREAD
+  threadpool:
+    ribbon-server:
+      coreSize: 2
+      maxQueueSize: 1000
+      queueSizeRejectionThreshold: 800
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,hystrix.stream

@@ -7,4 +7,7 @@ public interface DemoApi {
     @GetMapping("/test")
     String test();
 
+    @GetMapping("/test2")
+    String test2();
+
 }
