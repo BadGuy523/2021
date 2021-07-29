@@ -1,4 +1,4 @@
-package com.demo.feignclient;
+package com.demo.feignclient.config;
 
 import feign.Logger;
 import org.springframework.context.annotation.Bean;

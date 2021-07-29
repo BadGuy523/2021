@@ -32,7 +32,7 @@ hystrix:
           enable: true
         isolation:
           thread:
-            timeoutInMilliseconds: 3000
+            timeoutInMilliseconds: 1000
     DemoFeignClient#test2():
       execution:
         isolation:

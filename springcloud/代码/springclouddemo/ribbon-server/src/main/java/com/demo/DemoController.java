@@ -13,8 +13,8 @@ public class DemoController implements DemoApi {
     @Value("${server.port}")
     private int port;
 
-    @Value("${server.name}")
-    private String name;
+//    @Value("${server.name}")
+//    private String name;
 
     @Override
     public String test() {
@@ -23,12 +23,12 @@ public class DemoController implements DemoApi {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "name："+name;
+        return "name："+"name";
     }
 
     @Override
     public String test2() {
-        return "name："+name;
+        return "name："+"name";
     }
 
 }

@@ -1,4 +1,4 @@
-package com.demo.feignclient;
+package com.demo.feignclient.controller;
 
 import com.demo.client.DemoFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoOpenFeignController {
 
-//    @Autowired
-//    private MyFeignClient myFeignClient;
-
     @Autowired
     private DemoFeignClient demoFeignClient;
 
     @GetMapping("/test2")
     public String test2() {
-//        return myFeignClient.test();
         return demoFeignClient.test2();
     }
 
