@@ -1,0 +1,61 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        # 简单路由
+        - id: config_route
+          predicates:
+            - Path=/gateway/**
+          filters:
+            - StripPrefix=1
+            - Demo=demo # 自定义filter
+          uri: http://localhost:8080
+        # cookie路由
+        - id: cookie_route
+          predicates:
+            - Cookie=name,tom
+            - Path=/cookie/**
+            - Auth=auth,root  # 自定义断言，header中带有auth参数，且值为root
+          filters:
+            - StripPrefix=1
+          uri: http://localhost:8080
+        # 负载均衡路由
+        - id: lb_route
+          predicates:
+            - Path=/lb/**
+          filters:
+            - StripPrefix=1
+          uri: lb://ribbon-server
+        # 限流
+        - id: ratelimiter_route
+          predicates:
+            - Path=/ratelimiter/**
+          filters:
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                deny-empty-key: true
+                keyResolver: '#{@ipAddressKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+          uri: lb://ribbon-server
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  redis:
+    host: 192.168.160.130
+    port: 6379
+    password: 123
+
+
+server:
+  port: 90
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

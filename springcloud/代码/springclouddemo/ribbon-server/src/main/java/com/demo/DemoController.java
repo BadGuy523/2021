@@ -28,7 +28,7 @@ public class DemoController implements DemoApi {
 
     @Override
     public String test2() {
-        return "name："+"name";
+        return "port："+port;
     }
 
 }
