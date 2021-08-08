@@ -1,6 +1,11 @@
 spring:
   application:
     name: ribbon-server
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://192.168.160.130:9411/
 #  rabbitmq:
 #    host: 192.168.160.130
 #    port: 5672
@@ -11,6 +16,10 @@ spring:
 #      enabled: true
 server:
   port: 8080
+
+logging:
+  level:
+    org.springframework.cloud.sleuth: debug
 
 # 提供一个端点刷新配置
 management:

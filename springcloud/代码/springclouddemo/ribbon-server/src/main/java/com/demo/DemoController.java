@@ -19,11 +19,11 @@ public class DemoController implements DemoApi {
     @Override
     public String test() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "name："+"name";
+        return "port："+port;
     }
 
     @Override

@@ -1,6 +1,11 @@
 spring:
   application:
     name: gateway
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://192.168.160.130:9411/
   cloud:
     gateway:
       routes:
@@ -11,7 +16,7 @@ spring:
           filters:
             - StripPrefix=1
             - Demo=demo # 自定义filter
-          uri: http://localhost:8080
+          uri: lb://feign-client
         # cookie路由
         - id: cookie_route
           predicates:
@@ -40,7 +45,7 @@ spring:
                 keyResolver: '#{@ipAddressKeyResolver}'
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 2
-          uri: lb://ribbon-server
+          uri: lb://feign-client
       discovery:
         locator:
           enabled: true
@@ -48,12 +53,13 @@ spring:
   redis:
     host: 192.168.160.130
     port: 6379
-    password: 123
 
 
 server:
   port: 90
-
+logging:
+  level:
+    org.springframework.cloud.sleuth: debug
 management:
   endpoints:
     web:

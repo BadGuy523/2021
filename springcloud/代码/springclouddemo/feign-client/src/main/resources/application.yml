@@ -1,7 +1,11 @@
 spring:
   application:
     name: feign-client
-
+  sleuth:
+    sampler:
+      probability: 1.0
+  zipkin:
+    base-url: http://192.168.160.130:9411/
 #ribbon-server:
 #  ribbon:
 #    listOfServers: localhost:8080,localhost:8082
@@ -23,7 +27,7 @@ feign:
 logging:
   level:
     com.demo.client.DemoFeignClient: debug
-
+    org.springframework.cloud.sleuth: debug
 hystrix:
   command:
     default:
