@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: spring-boot-dubbo-demo-consumer
+
+# 多服务注册中心，配置调用时的负载均衡策略
+dubbo:
+  registries:
+    shanghai:
+      address: zookeeper://192.168.160.130:2181
+      timeout: 10000
+      zone: shanghai  #区域优先
+      weight: 100 #权重
+    hunan:
+      address: nacos://192.168.160.130:8848
+      weight: 10
+      preferred: true # 优先选择

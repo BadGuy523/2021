@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: spring-boot-dubbo-demo-provider
+dubbo:
+  scan:
+    base-packages: com.demo.springboot.dubbo.provider.service
+  protocol:
+    name: dubbo
+    port: -1 #自动指定端口
+  registries:
+    shanghai:
+      address: zookeeper://192.168.160.130:2181
+      timeout: 10000
+      default: true #若@DubboService没有指定需要注册的注册中心，则按默认配置来注册
+    hunan:
+      address: nacos://192.168.160.130:8848
+

@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: spring-cloud-dubbo-demo-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.160.130:8848
+
+# 默认值是*，订阅所有应用（不推荐），多个由,分割
+#dubbo:
+#  cloud:
+#    subscribed-services: spring-cloud-dubbo-demo-provider
+
