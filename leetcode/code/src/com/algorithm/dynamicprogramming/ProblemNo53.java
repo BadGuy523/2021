@@ -1,0 +1,165 @@
+package com.algorithm.dynamicprogramming;
+
+/**
+ * @Level：simple
+ * @Description: leetcode53题最大子序和（动态规划）
+ * 1、动态规划核心思想：拆分问题为数组中，到当前索引的最大连续和为多少，最终取每个索引中最大的那个
+ * 2、转移方程：f(i)=max{f(i−1)+nums[i],nums[i]}
+ * @Author: zhangjunqiang
+ * @Date: 2021/5/12
+ */
+public class ProblemNo53 {
+
+    /** 分治方法（线段树思想） **/
+
+    /**
+     * @Description: 记录分段数据状态内部类
+     * @Author: zhangjunqiang
+     * @Date: 2021/5/13
+     */
+    static class SegementStatus {
+        // 分段内以左端点起始的最大子段和
+        public int leftSum;
+        // 分段内以右端点结尾的最大子段和
+        public int rightSum;
+        // 分段内最大子段和
+        public int subSum;
+        // 分段内总和
+        public int allSum;
+
+        public SegementStatus() {
+        }
+
+        public SegementStatus(int leftSum, int rightSum, int subSum, int allSum) {
+            this.leftSum = leftSum;
+            this.rightSum = rightSum;
+            this.subSum = subSum;
+            this.allSum = allSum;
+        }
+    }
+
+    /**
+     * 获取指定区间的数据状态
+     *
+     * @param nums 数组
+     * @param leftIndex 左索引
+     * @param rightIndex 右索引
+     * @return SegementStatus
+     */
+    public SegementStatus doGetSegementStatus(int[] nums, int leftIndex, int rightIndex) {
+        if (leftIndex == rightIndex)
+            return new SegementStatus(nums[leftIndex],nums[leftIndex],nums[leftIndex],nums[leftIndex]);
+        int mid = (leftIndex + rightIndex) >> 1;
+        // 分左右两段递归处理
+        SegementStatus leftSegement = doGetSegementStatus(nums,leftIndex,mid);
+        SegementStatus rightSegement = doGetSegementStatus(nums,mid + 1,rightIndex);
+        // 合并
+        return joinLeftRightSegement(leftSegement,rightSegement);
+    }
+
+    /**
+     * 将左右分段数据合并
+     *
+     * @param leftSegement 左分段
+     * @param rightSegement 右分段
+     * @return SegementStatus
+     */
+    private SegementStatus joinLeftRightSegement(SegementStatus leftSegement, SegementStatus rightSegement) {
+        SegementStatus segementStatus = new SegementStatus();
+        // 合并后区间总和：左区间总和+右区间总和
+        segementStatus.allSum = leftSegement.allSum + rightSegement.allSum;
+        // 合并后左端点起始最大子段和：max(左分段左端点起始最大子段和，左分段区间总和+右分段左端点起始最大子段和)
+        segementStatus.leftSum = Math.max(leftSegement.leftSum,leftSegement.allSum + rightSegement.leftSum);
+        // 合并后右端点结尾最大子段和：max(右分段右端点结尾最大子段和，右分段区间总和+左分段右端点结尾最大子段和)
+        segementStatus.rightSum = Math.max(rightSegement.rightSum,rightSegement.allSum + leftSegement.rightSum);
+        // 合并后最大子段和：max(左分段最大子段和，右分段最大子段和，左分段右端点结尾最大子段和+右分段左端点起始最大子段和)
+        segementStatus.subSum = Math.max(Math.max(leftSegement.subSum,rightSegement.subSum), leftSegement.rightSum + rightSegement.leftSum);
+        return segementStatus;
+    }
+
+    public int maxSubArray(int[] nums) {
+        SegementStatus segementStatus = doGetSegementStatus(nums, 0, nums.length - 1);
+        return segementStatus.subSum;
+    }
+
+    /** 动态规划思想 **/
+
+    /**
+     * 用一维数组记录到指定索引的最大连续和，时间空间都为O(n)
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArray2(int[] nums) {
+        int length = nums.length;
+        int[] countArray = new int[length];
+        // 记录最大值
+        int max = nums[0];
+        // 记录到每个索引位置的最大子段和
+        countArray[0] = nums[0];
+        for (int i = 1; i < length; i++) {
+            countArray[i] = countArray[i - 1] + nums[i] > nums[i] ? countArray[i - 1] + nums[i] : nums[i];
+            max = countArray[i] > max ? countArray[i] : max;
+        }
+        return max;
+    }
+
+    /**
+     * 用一个变量记录上一个索引的最大连续和，时间为O(n),空间为O(1)
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArray3(int[] nums) {
+        int length = nums.length;
+        // 记录最大值
+        int max = nums[0];
+        // 记录上一个索引位置的最大子段和
+        int preMax = nums[0];
+        for (int i = 1; i < length; i++) {
+            preMax = preMax + nums[i] > nums[i] ? preMax + nums[i] : nums[i];
+            max = preMax > max ? preMax : max;
+        }
+        return max;
+    }
+
+    /**
+     * java官方题解
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArray4(int[] nums) {
+        int pre = 0, maxAns = nums[0];
+        for (int x : nums) {
+            pre = Math.max(pre + x, x);
+            maxAns = Math.max(maxAns, pre);
+        }
+        return maxAns;
+    }
+
+    /**
+     * 当前求和小于0，并没有增益
+     *
+     * @param nums
+     * @return
+     */
+    public int maxSubArray5(int[] nums) {
+        int ans = nums[0];
+        int sum = 0;
+        for(int num: nums) {
+            if(sum > 0) {
+                sum += num;
+            } else {
+                sum = num;
+            }
+            ans = Math.max(ans, sum);
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        ProblemNo53 solution = new ProblemNo53();
+        System.out.println(solution.maxSubArray(new int[]{-2,1,-3,4,-1,2,1,-5,4}));
+    }
+}

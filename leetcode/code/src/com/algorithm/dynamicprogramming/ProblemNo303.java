@@ -1,0 +1,48 @@
+package com.algorithm.dynamicprogramming;
+
+/**
+ * @Level：simple
+ * @Description: leetcode-303区域和检索-数组不可变
+ * @Author: zhangjunqiang
+ * @Date: 2021/5/27
+ */
+public class ProblemNo303 {
+
+    /**
+     * 先初始化，再检索，每次检索都会遍历，效率不高
+     *
+     */
+    public int[] nums;
+
+//    public ProblemNo303(int[] nums) {
+//        this.nums = nums;
+//    }
+
+    public int sumRange2(int left, int right) {
+        int result = 0;
+        for (int i = left; i <= right; i++) {
+            result += nums[i];
+        }
+        return result;
+    }
+
+    /**
+     * 初始化时计算每个索引位置的前缀和,保存在数组中
+     * 计算指定索引间的和时,取右索引下一位的前缀和减去左索引上一位的前缀和即可
+     *
+     */
+    public int[] sums;
+
+    public ProblemNo303(int[] nums) {
+        int n = nums.length;
+        sums = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            sums[i + 1] = sums[i] + nums[i];
+        }
+    }
+
+    public int sumRange(int left, int right) {
+        return sums[right + 1] - sums[left];
+    }
+
+}
