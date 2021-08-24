@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-  * @Description: leetcodeNo3-无重复字符的最大子序列长度
+  * @Description: leetcodeNo3-无重复字符的最大子序列长度(滑动窗口，哈希表)
   * @Author: zhangjunqiang
   * @Date: 2021/8/23 23:16
   * @version v1.0
