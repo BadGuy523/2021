@@ -69,13 +69,44 @@ public class ProblemNo138 {
         return map.get(head);
     }
 
-    // TODO:不用哈希表，用本身链表进行拷贝
+    // 不用哈希表，用本身链表进行拷贝
     public Node copyRandomList(Node head) {
         if (head == null) {
             return null;
         }
-        return null;
-
+        Node currentNode = head;
+        while (currentNode != null) {
+            // 将拷贝节点放在该节点之后，修改节点指针指向
+            Node node = new Node(currentNode.val);
+            node.next = currentNode.next;
+            currentNode.next = node;
+            currentNode = node.next;
+        }
+        currentNode = head;
+        while (currentNode != null) {
+            currentNode.next.random = currentNode.random != null ? currentNode.random.next : null;
+            currentNode = currentNode.next.next;
+        }
+        // 自己逻辑,注意点：需要将原节点与拷贝节点的指向完全断开
+        Node headNew = head.next;
+        currentNode = head;
+        Node next = currentNode.next.next;
+        while (currentNode != null) {
+            currentNode.next.next = next == null ? null : next.next;
+            currentNode.next = next;
+            currentNode = next;
+            next = next == null ? null : currentNode.next.next;
+        }
+        // 官方逻辑
+//        Node headNew = head.next;
+//        currentNode = head;
+//        while (currentNode != null) {
+//            Node next = currentNode.next;
+//            currentNode.next = currentNode.next.next;
+//            next.next = next.next != null ? next.next.next : null;
+//            currentNode = currentNode.next;
+//        }
+        return headNew;
     }
 
 }
