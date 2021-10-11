@@ -41,6 +41,7 @@ public class LRUCache {
     public LRUCache(int capcity) {
         LRUCacheMap = new HashMap<>(capcity);
         this.capcity = capcity;
+        // 新增头节点与尾节点
         dummy = new Node(-1,-1);
         tail = new Node(-1,-1);
         dummy.next = tail;
@@ -74,13 +75,13 @@ public class LRUCache {
             LRUCacheMap.put(key,existNode);
             moveToTail(existNode);
         } else {
+            // 不存在则直接放在tail节点前
             Node newNode = new Node(key,value);
-            Node firstNode = dummy.next;
-            firstNode.pre = newNode;
-            newNode.next = firstNode;
-            newNode.pre = dummy;
-            dummy.next = newNode;
-            moveToTail(newNode);
+            Node tailPre = tail.pre;
+            tail.pre = newNode;
+            newNode.next = tail;
+            newNode.pre = tailPre;
+            tailPre.next = newNode;
             if (LRUCacheMap.size() == capcity) {
                 Node deleteNode = dummy.next;
                 Node nextNode = deleteNode.next;
