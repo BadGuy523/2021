@@ -1,11 +1,11 @@
-import com.algotithm.slidingwindow
+package com.algorithm.slidingwindow;
 
 /**
   * @Description: leetcode-1004:最大连续1的个数III
   * @Author: zhangjunqiang
   * @Date: 2021/10/12
   */
-public class Solution {
+public class ProblemNo1004 {
     
     public int longestOnes(int[] nums, int k) {
         int len = nums.length;

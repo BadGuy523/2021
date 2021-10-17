@@ -10,7 +10,7 @@ import java.util.Map;
  * @author: BadGuy
  * @date: 2021-10-16 16:47
  **/
-public class Solution {
+public class ProblemNo2032 {
 
     public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
         // 记录结果集合
@@ -58,7 +58,7 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        ProblemNo2032 solution = new ProblemNo2032();
         solution.twoOutOfThree(new int[]{1,1,3,2},new int[]{2,3},new int[]{3});
     }
 

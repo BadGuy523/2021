@@ -8,7 +8,7 @@ import java.util.Map;
   * @Author: zhangjunqiang
   * @Date: 2021/10/14
   */
-public class Solution {
+public class ProblemNo560 {
 
     public int subarraySum(int[] nums, int k) {
         // 计算前缀和并且记录每种和出现的次数
@@ -31,6 +31,10 @@ public class Solution {
             }
         }
         return result;
+    }
+
+    public static void main(String[] args) {
+
     }
 
 }

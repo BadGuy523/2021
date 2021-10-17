@@ -8,7 +8,7 @@ import java.util.Set;
   * @Author: zhangjunqiang
   * @Date: 2021/10/12
   */
-public class Solution {
+public class ProblemNo3 {
     
     public int lengthOfLongestSubstring(String s) {
         int len = s.length();

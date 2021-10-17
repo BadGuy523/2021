@@ -5,7 +5,7 @@ package com.algorithm.slidingwindow;
   * @Author: zhangjunqiang
   * @Date: 2021/10/12
   */
-public class Solution {
+public class ProblemNo209 {
 
     public int minSubArrayLen(int target, int[] nums) {
         int len = nums.length;
