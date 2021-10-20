@@ -44,5 +44,26 @@ public class ProblemNo121 {
         }
         return result;
     }
+    
+    /**
+     * 动态规划思想，上面的方法为此方法的优化，因为其不需要维护dp数组
+     * 
+     * @param prices
+     * @return
+     */
+    public int maxProfit3(int[] prices) {
+        int minPrice;
+        // dp数组
+        int[] dp = new int[prices.length];
+        dp[0] = 0;
+        minPrice = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            // 有最小值则更新
+            minPrice = Math.min(minPrice,prices[i]);
+            // 每天的卖出的最大价格为前一天卖出的最大价格和当前价格-最小值中取最大
+            dp[i] = Math.max(dp[i - 1],prices[i] - minPrice);
+        }
+        return dp[prices.length - 1];
+    }
 
 }
