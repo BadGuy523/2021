@@ -61,7 +61,7 @@ public class ProblemNo122 {
     }
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        ProblemNo122 solution = new ProblemNo122();
         solution.maxProfit(new int[]{7,1,5,3,6,4});
     }
 
