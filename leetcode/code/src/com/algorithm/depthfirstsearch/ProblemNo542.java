@@ -6,52 +6,41 @@ package com.algorithm.depthfirstsearch;
  * @date: 2021-10-31 19:34
  **/
 class ProblemNo542 {
-    static int row;
-    static int col;
-    public static int[][] updateMatrix(int[][] mat) {
-        // 矩阵长宽
-        row = mat.length;
-        col = mat.length;
+        // 便于向四周广搜
+    int[][] dict = new int[][]{{-1,0},{1,0},{0,-1},{0,1}};
+
+    public int[][] updateMatrix(int[][] mat) {
+        int row = mat.length;
+        int col = mat[0].length;
+        // 记录离最近的0距离
+        int[][] dist = new int[row][col];
         // 记录是否访问过
         boolean[][] isVisted = new boolean[row][col];
-        for (int i = 0; i < row; i++) {
+        Queue<int[]> queue = new LinkedList<>();
+        // 先将0全部入队
+        for (int i = 0; i < row; i ++) {
             for (int j = 0; j < col; j++) {
-                // 若访问过，或值为0，跳过
-                if (isVisted[i][j] || mat[i][j] == 0) {
-                    continue;
+                if (mat[i][j] == 0) {
+                    queue.offer(new int[]{i,j});
+                    isVisted[i][j] = true;
                 }
-                // dfs求距离
-                mat[i][j] = dfs(isVisted,mat,i,j);
             }
         }
-        return mat;
-    }
-
-    public static int dfs(boolean[][] isVisted,int[][] mat,int x,int y) {
-        // 如果该点超出边界，返回-1
-        if (x < 0 || x >= row || y < 0 || y >= col) {
-            return -1;
+        while (!queue.isEmpty()) {
+            int[] head = queue.poll();
+            for (int i = 0; i < dict.length; i++) {
+                int x = head[0] + dict[i][0];
+                int y = head[1] + dict[i][1];
+                // 如果已访问过，或越界，则跳过
+                if (x < 0 || x >= row || y < 0 ||y >= col || isVisted[x][y]) {
+                    continue;
+                }
+                // 否则入队，标记访问，并且距离为当前出队点的距离+1
+                queue.offer(new int[]{x,y});
+                isVisted[x][y] = true;
+                dist[x][y] = dist[head[0]][head[1]] + 1;
+            }
         }
-        // 如果已访问过或者原本值为0，直接返回
-        if (isVisted[x][y] || mat[x][y] == 0) {
-            return mat[x][y];
-        }
-        isVisted[x][y] = true;
-        // 记录距离
-        int dis = 1;
-        // dfs周边点
-        int a = dfs(isVisted,mat,x - 1,y);
-        dis = a == -1 ? dis : a;
-        int b = dfs(isVisted,mat,x + 1,y);
-        dis = b == -1 ? dis : Math.min(dis,b);
-        int c = dfs(isVisted,mat,x,y - 1);
-        dis = c == -1 ? dis : Math.min(dis,c);
-        int d = dfs(isVisted,mat,x,y + 1);
-        dis = d == -1 ? dis : Math.min(dis,d);
-        return dis + 1;
-    }
-
-    public static void main(String[] args) {
-        updateMatrix(new int[][]{{0,0,0},{0,1,0},{1,1,1}});
+        return dist;
     }
 }
