@@ -1,11 +1,13 @@
 ### ReentrantLock简介
-TODO:Locksupport不可重入测试，中断测试
 - 独占锁
 - 可重入锁
 - 可响应中断
 - 公平与非公平根据初始化传入参数决定（默认非公平锁）
 ### 源码分析（非公平锁为例）
 - 首先ReentrantLock类中有一个内部静态抽象类Sync，Sync继承了AbstractQueuedSynchronizer（继承了state互斥变量），NonfairSync继承了Sync并重写了Sync的抽象方法lock()
+### 存疑
+- 中断处理有何意义
+- Node的状态标志机制
 ##### lock.lock()
 - ReentrantLock类的lock方法
 ```
@@ -251,10 +253,45 @@ private static boolean shouldParkAfterFailedAcquire(Node pred, Node node) {
             LockSupport.unpark(s.thread);
     }
 ```
-- 调用AbstractQueuedSynchronizer的shouldParkAfterFailedAcquire()方法
-```
-```
-- 调用AbstractQueuedSynchronizer的shouldParkAfterFailedAcquire()方法
-```
-```
 ##### lock.unlock()
+- 调用ReentrantLock的unlock()方法
+```
+    public void unlock() {
+        sync.release(1);
+    }
+```
+- 调用AbstractQueuedSynchronizer的release()方法
+```
+    public final boolean release(int arg) {
+        // 尝试释放锁
+        if (tryRelease(arg)) {
+            // 释放锁成功：如果头节点不为null，且状态不为初始态，则唤醒头节点的后继节点
+            Node h = head;
+            if (h != null && h.waitStatus != 0)
+                unparkSuccessor(h);
+            return true;
+        }
+        return false;
+    }
+```
+- 调用Sync的tryRelease()方法
+```
+        protected final boolean tryRelease(int releases) {
+            // state减去releases，因为可重入，state可能大于1，所有c不一定为0
+            int c = getState() - releases;
+            // 如果当前线程不等于获取锁的独占线程，排除异常，非法状态监控异常
+            if (Thread.currentThread() != getExclusiveOwnerThread())
+                throw new IllegalMonitorStateException();
+            // 初始化释放标志位为false
+            boolean free = false;
+            if (c == 0) {
+                // 如果c为0，则标志位置为true,且将独占线程置为null
+                free = true;
+                setExclusiveOwnerThread(null);
+            }
+            // 修改state值为c
+            setState(c);
+            // 返回是否释放锁标志
+            return free;
+        }
+```
