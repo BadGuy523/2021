@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="63b62c1f-ff12-4002-977b-50753f918da5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/dubbo-server-sample.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dubbo-server-sample/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-cloud-dubbo-demo/spring-cloud-dubbo-demo-api/spring-cloud-dubbo-demo-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-cloud-dubbo-demo/spring-cloud-dubbo-demo-consumer/spring-cloud-dubbo-demo-consumer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-cloud-dubbo-demo/spring-cloud-dubbo-demo-provider/spring-cloud-dubbo-demo-provider.iml" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/.gitignore" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="25JOAFy60ebrCmNfeD2mccSowOu" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="63b62c1f-ff12-4002-977b-50753f918da5" name="Default Changelist" comment="" />
+      <created>1645241577140</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1645241577140</updated>
+      <workItem from="1645241579138" duration="286000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

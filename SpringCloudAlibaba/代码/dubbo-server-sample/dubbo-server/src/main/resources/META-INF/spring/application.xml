@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--dubbo对外的服务名称-->
+    <dubbo:application name="dubbo-server"/>
+
+    <!--不需要注册到服务注册中心-->
+<!--    <dubbo:registry address="N/A"/>-->
+
+    <!--使用zookeeper注册中心-->
+<!--    <dubbo:registry address="zookeeper://localhost:2181" timeout="10000"/>-->
+
+    <!--使用nacos注册中心-->
+    <dubbo:registry address="nacos://localhost:8848" timeout="10000"/>
+
+    <!--对外暴露端口-->
+    <dubbo:protocol name="dubbo" port="20880"/>
+
+    <!--发布服务（接口）-->
+    <dubbo:service interface="com.zjq.service.ILoginService" ref="loginService"/>
+    <!--对应的实现类-->
+    <bean id="loginService" class="com.zjq.service.impl.LoginServiceImpl"/>
+</beans>
