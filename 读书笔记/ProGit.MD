@@ -49,4 +49,7 @@
 ### Git的三种级别配置（优先级依次升高）
 1. /etc/gitconfig:系统上每一个用户及他们仓库的通用配置，git config --system会读写此文件
 2. ~/.gitconfig或~/.config/git/config:只针对当前用户，git config --global会读写此文件
+```
+~/.gitconfig或~/.config/git/config:只针对当前用户，git config --global会读写此文件
+```
 3. 当前使用仓库的Git目录中的config文件，就是.git/config，针对该仓库
