@@ -86,3 +86,8 @@ git difftool --tool-help
 git difftool --tool=vimdiff
 ```
 - 提交
+```
+# 需要弹出编辑器输入提交信息
+git commit
+# 弹出的编辑器会默认记录
+```
