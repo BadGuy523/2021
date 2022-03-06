@@ -89,5 +89,13 @@ git difftool --tool=vimdiff
 ```
 # 需要弹出编辑器输入提交信息
 git commit
-# 弹出的编辑器会默认记录
+# 弹出的编辑器会默认记录详细的修改内容
+git commit -v
+# 设定自己喜欢的交互编辑软件,一般为vim或emacs
+git config --global core.editor
+# 提交信息和命令放同一行
+git commit -m "message"
+# 跳过暂存部分
+git commit -a
 ```
+- 移除文件
