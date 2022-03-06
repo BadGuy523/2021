@@ -53,3 +53,36 @@
 ~/.gitconfig或~/.config/git/config:只针对当前用户，git config --global会读写此文件
 ```
 3. 当前使用仓库的Git目录中的config文件，就是.git/config，针对该仓库
+### Git基础
+###### 获取Git仓库
+```
+# 在现有目录中初始化仓库
+git init
+# 克隆现有仓库
+git clone [url]
+```
+###### 记录每次更新到仓库
+- 工作目录下的每一个文件就两种状态：已跟踪或未跟踪
+- 已跟踪状态：未修改、已修改、已放入暂存区
+```
+# 检查当前文件状态，-s参数：紧凑的格式
+git status
+# 跟踪新文件
+git add [files]
+```
+- status三种状态
+1. untracked files:未跟踪文件
+2. changes to be committed:已暂存状态，等待提交
+3. changes not staged for commit:已跟踪文件发生了变化，未暂存
+- 查看已暂存和未暂存的修改
+```
+# 查看为暂存的文件更新部分
+git diff
+# 查看已暂存文件和上次提交的更新部分
+git diff --staged
+# 查看可用diff插件
+git difftool --tool-help
+# 使用插件查看diff,vimdiff是工具之一
+git difftool --tool=vimdiff
+```
+- 提交
