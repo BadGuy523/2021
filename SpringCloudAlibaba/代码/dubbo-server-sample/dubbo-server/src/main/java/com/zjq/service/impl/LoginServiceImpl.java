@@ -10,6 +10,6 @@ import com.zjq.service.ILoginService;
 public class LoginServiceImpl implements ILoginService {
     @Override
     public String login(String username, String password) {
-        return "success: " + username;
+        return " success: " + username;
     }
 }
