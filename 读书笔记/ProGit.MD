@@ -165,5 +165,18 @@ git log --since=2.weeks
 git log -S function_name
 # 指定路径
 git log --/xxx/xx
-# 
+# 限制git log输出的选项
+-(n)                仅显示最近的 n 条提交 
+--since , --after   仅显示指定时间之后的提交。 
+--until , --before  仅显示指定时间之前的提交。 
+--author            仅显示指定作者相关的提交。 
+--committer         仅显示指定提交者相关的提交。 
+--grep              仅显示含指定关键字的提交 
+-S                  仅显示添加或移除了某个关键字的提交
+# 实际例子，2008年10月期间 Junio Hamano提交的但未合并的测试文件
+git log --pretty="%h - %s" --author=gitster --since="2008-10-01" --before="2008-11-01" --no-merges -- t/
+```
+###### 撤销操作
+```
+# 重新提交：漏掉
 ```
