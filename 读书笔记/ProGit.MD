@@ -115,3 +115,33 @@ mv test.txt demo.txt
 git rm test.txt
 git add demo.txt
 ```
+###### 查看提交历史
+```
+# 无参数查看,按时间先后顺序列出
+git log
+# -p或--patch参数，显示每次提交引入的差异 -数字限制日志条数
+git log -p -2
+# stat参数，简略统计信息
+git log --stat
+# pretty参数，在一行展示:oneline，其他还有short，full，fuller
+git log --pretty=oneline
+# format参数，定制记录的显示格式
+git log --pretty=format:"%h - %an , %ar : %s"
+%H 提交的完整哈希值
+%h 提交的简写哈希值
+%T 树的完整哈希值
+%t 树的简写哈希值
+%P 父提交的完整哈希值
+%p 父提交的简写哈希值
+%an 作者名字
+%ae 作者的电子邮件地址
+%ad 作者修订日期（可以用 --date=选项 来定制格式）
+%ar 作者修订日期，按多久以前的方式显示
+%cn 提交者的名字
+%ce 提交者的电子邮件地址
+%cd 提交日期
+%cr 提交日期（距今多长时间）
+%s 提交说明
+# graph参数，使用一些ASCII字符串形象的展示你的分支、合并历史
+git log --pretty=format:"%h %s" -- graph
+```
