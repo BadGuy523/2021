@@ -163,8 +163,8 @@ git log --since=2.weeks
 # --all-match 多个选项同时匹配
 # -S 添加或移除了某些字符串的提交
 git log -S function_name
-# 指定路径
-git log --/xxx/xx
+# 指定路径,路径放最后
+git log -2 -- xxx/xx
 # 限制git log输出的选项
 -(n)                仅显示最近的 n 条提交 
 --since , --after   仅显示指定时间之后的提交。 
@@ -178,5 +178,8 @@ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" --before="2008-
 ```
 ###### 撤销操作
 ```
-# 重新提交：漏掉
+# 重新提交：漏掉文件未添加，或提交信息写错了。会将暂存区的文件提交，最终只会有一个提交
+git commit --amend
+# 取消暂存的文件,不加选项
+git reset HEAD xxx.txt
 ```
