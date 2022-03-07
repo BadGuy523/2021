@@ -100,3 +100,18 @@ git commit -m "message"
 git commit -a
 ```
 - 移除文件
+```
+# 移除工作目录文件并移出跟踪文件清单 -f强制
+git rm test.txt
+# 仅移出跟踪文件清单
+git rm --cached test.txt
+```
+- 移动文件
+```
+# 类似于改名字
+git mv test.txt demo.txt
+# 相当于运行了下面三条命令
+mv test.txt demo.txt
+git rm test.txt
+git add demo.txt
+```
