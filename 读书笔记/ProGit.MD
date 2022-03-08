@@ -180,6 +180,26 @@ git log --pretty="%h - %s" --author=gitster --since="2008-10-01" --before="2008-
 ```
 # 重新提交：漏掉文件未添加，或提交信息写错了。会将暂存区的文件提交，最终只会有一个提交
 git commit --amend
-# 取消暂存的文件,不加选项
+# 取消暂存的文件,不加选项的reset安全，加上hard危险，会撤销工作目录中的文件
 git reset HEAD xxx.txt
+# 撤销对文件的修改,危险命令，在本地的任何修改都会消失
+git checkout -- xxx.txt
+```
+###### 远程仓库的使用
+```
+# 查看远程仓库,加-v可显示需要读写远程仓库使用的Git保存的简写与其对应的URL
+git remote
+# 添加远程仓库
+git remote add <shortname> <url>
+# 从远程仓库中抓取与拉取（如何匹配分支？？？）
+git fetch <remote>
+# 如果当前分支设置了跟踪远程分支，可用git pull 拉取
+# 推送到远程分支,将master推送到origin服务器
+git push origin master
+# 查看某个远程仓库,会列出URL及跟踪分支信息
+git remote show <remote>
+# 远程仓库的重命名与移除
+git remote rename oldname newname
+# 删除远程仓库
+git remote remove <remote>
 ```
