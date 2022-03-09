@@ -204,3 +204,47 @@ git remote rename oldname newname
 # 删除远程仓库
 git remote remove <remote>
 ```
+###### 打标签
+- Git可以给仓库历史中的某一个提交打上标签，已示重要
+- 轻量标签：像一个不会改变的分支——它只是某个特定提交的引用
+- 附注标签：是存储在Git数据库中的一个完整对象，包括打标签者的名字，邮件地址，日期，标签信息
+```
+# 列出已有标签
+git tag
+# -l "keyword" 按照特定的模式查找,或--list
+git tag -l "v1.0"
+# 创建附注标签 -a选项表示创建附注标签，-m指定存储在标签中的信息，没有会启动编辑器要求你输入信息，同commit
+git tag -a v1.4 -m "my version 1.4"
+# 查看标签信息和与之对应的提交信息
+git show v1.4
+# 创建轻量标签，不需要使用-a，-s，-m选项
+git tag v1.4.1
+# 后期打标签，指定提交的校验和或部分校验和 git log --pretty=oneline 列出提交历史，首列为校验和
+git tag -a v1.2 xxxx
+# 共享标签，默认git push不会推送标签到远程仓库
+git push origin v1.5
+# 一次性推送很多标签,将所有不在远程仓库的标签全部推送，不区分轻量和附注
+git push origin --tags
+# 删除标签，本地
+git tag -d <tagname>
+# 删除本地后，更新远程
+git push origin :refs/tags/<tagname>
+# 更直观的方式
+git push origin --delete <tagname>
+# 检出标签，会使你的仓库处于“分离头指针”状态，做了更改提交，标签不会发生变化，但你的新提交将不属于任何分支，并且无法访问
+git checkout <tagname>
+# 常规操作，根据标签创建一个新的分支
+git checkout -b <branchname> <tagname>
+```
+###### Git别名
+```
+# 如果不想每次都输入完整的Git命令，可以通过git config为每个命令设置别名
+git config --global alias.co checkout
+# 举例：解决取消暂存文件的易用性问题
+git config --global alias.unstage 'reset HEAD --'
+# 举例：查看最后一次提交
+git config --global alias.last 'log -1 HEAD'
+# 举例：与Git仓库协作工具的命令，在命令前加!符号
+git config --global alias.visual '!gitk'
+# 
+```
