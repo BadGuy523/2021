@@ -338,3 +338,23 @@ git branch --merged 或 git branch --no-merged
 git branch --merged master
 ```
 ###### 分支开发工作流
+- 长期分支：只在一个分支上保留完全稳定的代码，其他分支稳定后再合入
+- 主题分支：短期分支，一些紧急修改分支，或者不同的实践性改动
+###### 远程分支
+- 远程引用是对远程仓库的引用,包括分支、标签等
+```
+# 获得远程引用的完整列表
+git ls-remote <remote>
+# 获得远程分支的更多信息
+git remote show <remote>
+```
+- 远程跟踪分支是远程分支状态的引用，以```<remote>/<branch>```形式命名
+```
+# 克隆时指定<remote>名称，克隆后本地分支和远程跟踪分支都指向最新的提交对象
+git clone -o remotename
+```
+- 本地与远程的工作可以分叉，只要不拉取数据
+```
+# 更新你的远程跟踪分支,在远程仓库找当前分支名称？？？
+git fetch <remote>
+```
