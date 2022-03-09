@@ -327,3 +327,14 @@ git mergetool
 git commit
 ```
 ###### 分支管理
+```
+# 查询分支列表,列表中带*的分支表示当前检出分支，即HEAD指针指向的分支
+git branch
+# 查看每一个分支的最后一次提交
+git branch -v
+# 过滤列表中已经合并或尚未合并到当前分支的分支
+git branch --merged 或 git branch --no-merged
+# 也可指定其他分支的合并状态，例如合并到master的分支
+git branch --merged master
+```
+###### 分支开发工作流
