@@ -272,7 +272,58 @@ git checkout testing
 ```
 git log --oneline --decorate --graph --all
 ```
-- 创建新分支同时切换过去
+- 创建新分支同时切换过去，以当前分支为基础创建；后面可加远程分支名，以远程分支为基础创建，并关联
 ```
 git checkout -b <newbranchname>
 ```
+- 查看本地分支及关联的分支
+```
+git branch -vv
+```
+###### 分支的新建与合并
+- 实际场景
+1. 开发某个网站
+2. 为实现某个新的用户需求，创建一个分支
+3. 在这个分支上开展工作。
+- 突发情况,线上有个紧急问题需要修复
+1. 切换到你的线上分支（production branch）
+2. 为这个紧急任务新建一个分支，并在其中修复它
+3. 在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支
+4. 切换回你最初工作的分支上，继续工作。
+- 具体操作
+```
+# 当前在master分支
+# 新建一个新需求分支同时切换到那个分支上
+git checkout -b newneed
+# 正常开发及提交推送
+# 线上突发问题
+# 保证工作目录和暂存区里没有没提交的修改，切换回master
+git checkout master
+# 建立一个紧急修复分支并切换
+git branch -b hotfix
+# 做修复工作
+# 将hotfix分支合并到master分支,hotfix提交对象是原master提交对象的直接后继节点，Git会直接将指针向前移动（顺着一个分支走下去能够到达另一个分支，没有需要解决的分歧：Fast-forward）
+git checkout master
+git merge hotfix
+# 最新修改已在master，可以发布修复内容
+# 回到之前打断的工作newneed，需要先删除hotfix，已经没用了
+git branch -d hotfix
+# 切回newneed
+git checkout newneed
+# 继续工作后，合并到master,此时的合并是一个三方合并，因为master节点不是newneed的直接祖先，三方是指：master，newneed，公共祖先提交节点
+git checkout master
+git merge newneed
+# 如果有冲突，原因是两个分支中对统一部分进行了不同的修改，此时Git做了合并，不会自动的创建一个新的合并提交，可以使用git status查看产生冲突未合并的内容（unmerged）
+# 打开冲突文件,======上方为当前分支即maste内容，下方为newneed分支内容，手动删除<<<<< >>>>>> ===== 并修改冲突内容
+<<<<<<< HEAD:index.html
+xxxxx
+=======
+xxxxxxaaa
+>>>>>>> newneed:index.html
+# 对修改后的文件使用git add 来将其标记为冲突已解决
+# 使用图形化工具解决冲突,可配置使用的工具 git mergetool --tool-help
+git mergetool
+# 合并提交
+git commit
+```
+###### 分支管理
