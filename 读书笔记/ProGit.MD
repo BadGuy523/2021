@@ -406,3 +406,57 @@ git branch -vv
 git push <remote> --delete <branch>
 # 该命令做的只是从服务器上移除这个指针，Git服务器通常会保留数据一段时间直到垃圾回收运行，若不小新删除，通常是很容易恢复的，如何恢复？？？
 ```
+###### 变基
+- 在Git中整合来自不同分支的修改主要有两种方法：merge和rebase
+- 变基的基本操作，当提交节点在C1、C2后出现分叉C3和C4时,假设C3是master分支
+```
+# merge方法：C3,C4,C2来一次三方合并
+# rebase方法：提取在C4中引入的修改，在C3的基础上再应用一次（将某一分支上的所有修改都移至另一分支上）
+git checkout c4
+git rebase c3
+# 原理：找到最近公共祖先C2，对比当前分支C4相对于该祖先的历次提交，提取相应修改并存为临时文件，然后将当前分支指向目标基底C3，最后依次将之前另存为临时文件的修改依序应用
+# 然后回到c3分支，进行一次快进合并
+git checkout c3
+git merge c4
+# 最终提交对象是一样的，但是变基使得提交历史更加整洁，更加串行化，提交历史是一条直线，没有分叉
+```
+- 有趣的变基例子：基于master分支，创建了特性分支server，提交修改后再根据server分支，创建了client分支
+```
+# 假设你希望将client中的修改合并到主分支并发布，但暂时不想合并server的修改
+git rebase --onto master server client
+# 以上命令：取出client分支，找出处于client分支和server分支的公共祖先之后的修改，然后把它们在master分支上重演一遍
+# 然后再快进合并master分支
+git checkout master
+git merge client
+# 最后将server分支的修改也整合进来，以下命令无需切换到server分支再进行变基，更方便
+git rebase master server
+git checkout master
+git merge server
+# 最后删除client和server分支
+git branch -d client
+git branch -d server
+```
+- 变基的风险：不要对在你的仓库外有副本的分支执行变基
+- 用变基解决变基，如有上述风险导致的问题：团队中的某人强制推送并覆盖了一些你所基于的提交
+```
+# 需要检查你做了哪些修改，他们覆盖了哪些修改，Git除了对整个提交计算SHA-1校验和意外，也对本次提交所引入的修改计算校验和，即“patch-id”
+git rebase <trackbranch>
+# Git会检查：
+# 1.哪些提交是我们分支独有的
+# 2.其中哪些提交不是合并操作的结果
+# 3.哪些提交在对方覆盖更新时并没有被纳入目标分支
+# 4.把查到的这些提交应用到跟踪分支上
+
+# 更简单的办法
+git pull --rebase
+或者
+git fetch
+git rebase <trackbranch>
+或者
+git config --global pull.rebase true
+git pull
+# 直到把变基命令当作是在推送前清理提交使之整洁的工具，并且只在从未推送至共用仓库的提交上执行变基命令，就不会有事
+# 假如你在那些已经被推送至共用仓库的提交执行变基命令，并因此丢弃了一些别人的开发所基于的提交，那你就有大麻烦了，你的同事也会因此鄙视你
+```
+- 变基 vs 合并：1种观点认为合并属于记录实际发生过什么，这些痕迹应该保留下来，另一种观点认为提交历史是项目过程中发生的故事，应该怎么方便后来的读者就怎么写
+- 总的原则是：只对尚未推送或分享给别人的本地修改执行变基操作清理历史，从不对已推送至别处的提交执行变基操作。
