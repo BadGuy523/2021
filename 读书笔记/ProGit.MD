@@ -377,5 +377,32 @@ git config --global credential.helper cache
 - 推送后，其他协作者从服务器抓取数据时，会在本地生成一个远程分支——指向服务器分支的引用（远程跟踪分支）
 - 抓取到新的远程分支时，本地不会自动生成一份可编辑的副本，本地不会有一个新的分支
 ```
-# 
+# 将新抓取的内容合并到当前所在的分支
+git merge <remote>/<branch>
+# 想要在自己的新分支上工作，可以将其建立在远程跟踪分支之上
+git checkout -b <branch> <remote>/<branch> 
+```
+- 跟踪分支，从一个远程跟踪分支检出一个本地分支会自动创建一个叫做“跟踪分支”（上游分支），跟踪分支是远程分支有直接关系的本地分支
+```
+# 在跟踪分支上使用git pull，Git能自动的识别去哪个服务器抓取、合并到哪个分支
+git pull
+# 克隆一个仓库时，通常会自动创建一个跟踪origin/master的master分支，也可以设置其他的跟踪分支
+git checkout -b <branch> <remote>/<branch>
+git checkout --track <remote>/<branch>
+# 设置已有的本地分支跟踪一个刚刚拉取下来的远程分支，或者想要修改正在跟踪的上游分支
+git branch -u <remote>/<branch> 或 git branch --set-upstream-to <remote>/<branch>
+# 上游快捷方式，当设置好跟踪分支后，可通过@{upstream}或@{u}快捷方式来引用它
+git merge @{u} 代替 git merge origin/master
+# 查看设置的所有跟踪分支,显示每一个分支正在跟踪哪个远程分支，本地分支是否领先、落后或都有，注意这些数据是来自于从服务器最后一次抓取的数据，这个命令并没有连接服务器，只会告诉你关于本地缓存的服务器数据
+git branch -vv
+或
+git fetch --all
+git branch -vv
+```
+- 拉取，```git pull就是git fetch紧接一个git merge```
+- 删除远程分支
+```
+# 假设你已经通过远程分支做完所有工作，或你和协作者已经完成一个特性并且合并到了远程仓库的master分支，可以删除该远程分支
+git push <remote> --delete <branch>
+# 该命令做的只是从服务器上移除这个指针，Git服务器通常会保留数据一段时间直到垃圾回收运行，若不小新删除，通常是很容易恢复的，如何恢复？？？
 ```
