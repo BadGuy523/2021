@@ -363,4 +363,19 @@ git fetch <remote>
 git remote add <remotename> <url>
 ```
 - 抓取新远程仓库有而本地没有的数据，会设置远程跟踪分支newremote/master指向原仓库的master分支（如果是基于原仓库建的仓库，且没有分叉）
-- 推送，需要共享一个
+- 推送，需要共享一个分支时，需要显示的推送想要分享的分支
+```
+# 这里的工作被简化了，完整命令应该是git push refs/heads/<branch>:refs/heads/<branch>
+git push <remote> <branch>
+或
+git push <remote> <branch>:<branch>
+```
+- 避免每次输入密码
+```
+git config --global credential.helper cache
+```
+- 推送后，其他协作者从服务器抓取数据时，会在本地生成一个远程分支——指向服务器分支的引用（远程跟踪分支）
+- 抓取到新的远程分支时，本地不会自动生成一份可编辑的副本，本地不会有一个新的分支
+```
+# 
+```
