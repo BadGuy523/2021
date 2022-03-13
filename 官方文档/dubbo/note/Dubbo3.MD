@@ -57,4 +57,39 @@
 - 云原生特性主要体现在：
 1. 容器调度平台（Kubernetes）
 2. Service Mesh
-
+### 新版本特性
+###### 全新服务发现模型
+- 相比于2.x版本中的基于接口粒度的服务发现机制，3.x引入了全新的基于应用粒度的服务发现机制，带来优点：
+1. 提升在大规模集群时间中的性能与稳定性
+2. 提高系统资源利用率，降低单机内存消耗，降低注册中心集群的存储与推送压力
+3. 可支持集群规模步入百万实例层次
+- Dubbo3前期版本将会同时提供对两套地址发现模型的支持
+###### 下一代RPC通信协议
+- 定义了全新的RPC通信协议——Triple：基于HTTP/2创建，完全兼容gRPC，优势：
+1. 更容易适配网关、Mesh架构，使Dubbo更方便的与各种网关、Sidecar组件配合工作
+2. 多语言友好，推荐配合Protobuf使用，使用IDL定义服务，使用Protobuf编码业务数据
+3. 流式通信支持。Triple 协议支持 Request Stream、Response Stream、Bi-direction Stream
+###### 云原生
+- Dubbo3构建的业务应用可直接部署在VM、Container、Kubernetes等平台
+- 规划了两种形态的Service Mesh方案
+1. 经典的基于 Sidecar 的 Service Mesh
+Dubbo3构建的业务应用可直接部署在VM、Container、Kubernetes等平台
+- 规划了两种形态的Service Mesh方案
+1. 经典的基于 Sidecar 的 Service Mesh
+无 Sidecar 的 Proxyless MeshDubbo3构建的业务应用可直接部署在VM、Container、Kubernetes等平台
+- 规划了两种形态的Service Mesh方案
+1. 经典的基于 Sidecar 的 Service Mesh
+2. 无 Sidecar 的 Proxyless Mesh
+###### 扩展点分离
+- org.apache.dubbo:dubbo:3.0.0不再是包含所有资源的all-in-one包，一些可选依赖作为独立组件单独发布
+###### 服务柔性
+- Dubbo3.0 的柔性增强以面向失败设计为理念，提供包括精准容量评估、自适应限流、自适应负载均衡的支持，自底向上的分步构建大规模可靠应用。
+###### 全面性能提升
+- 服务发现资源利用率显著提升。
+1. 对比接口级服务发现，单机常驻内存下降 50%，地址变更期 GC 消耗下降一个数量级 (百次 -> 十次)
+2. 对比应用级服务发现，单机常驻内存下降 75%，GC 次数趋零
+- Dubbo 协议性能持平，Triple 协议在网关、Stream吞吐量方面更具优势。
+1. Dubbo协议 （3.0 vs 2.x），3.0 实现较 2.x 总体 qps rt 持平，略有提升
+2. Triple协议 vs Dubbo协议，直连调用场景 Triple 性能并无优势，其优势在网关、Stream调用场景。
+###### Native Image
+### 快速开始
