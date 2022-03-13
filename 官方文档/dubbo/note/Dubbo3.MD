@@ -93,3 +93,4 @@ Dubbo3构建的业务应用可直接部署在VM、Container、Kubernetes等平�
 2. Triple协议 vs Dubbo协议，直连调用场景 Triple 性能并无优势，其优势在网关、Stream调用场景。
 ###### Native Image
 ### 快速开始
+- 见/code/dubbo-samples/dubbo-samples-basic目录下的示例代码
