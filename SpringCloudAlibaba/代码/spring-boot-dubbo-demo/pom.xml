@@ -47,13 +47,13 @@
                 <version>${nacos.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.apache.dubbo</groupId>
-                <artifactId>dubbo-dependencies-zookeeper</artifactId>
-                <version>${dubbo.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>org.apache.dubbo</groupId>-->
+<!--                <artifactId>dubbo-dependencies-zookeeper</artifactId>-->
+<!--                <version>${dubbo.version}</version>-->
+<!--                <type>pom</type>-->
+<!--                <scope>import</scope>-->
+<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 

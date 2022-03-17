@@ -9,9 +9,10 @@ dubbo:
     port: -1 # 自动指定端口
   registries:
     shanghai:
-      address: zookeeper://${serverip}:2181
+      address: zookeeper://${serverip}:2181 #TODO:云服务器安装zookeeper
       timeout: 10000
       default: true # 若@DubboService没有指定需要注册的注册中心，则按默认配置来注册
+      check: false
     hunan:
       address: nacos://${serverip}:8848
 
