@@ -32,10 +32,11 @@
             <artifactId>nacos-client</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.dubbo</groupId>-->
-<!--            <artifactId>dubbo-dependencies-zookeeper</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-dependencies-zookeeper</artifactId>
+            <type>pom</type>
+        </dependency>
 
         <dependency>
             <groupId>org.example</groupId>
@@ -43,4 +44,29 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <!--指定打包后的jar包名称-->
+        <finalName>spring-boot-dubbo-demo-provider</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--1.将原始maven打包的jar重命名xx.jar.original作为原始文件-->
+                            <!--2.在原jar包基础上，进行重新打包，新形成的jar包不但包含应用类文件和配置文件-->
+                            <!--还包含应用所依赖的jar包以及SpringBoot启动相关类，以此满足SpringBoot独立应用的特性-->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--maven打包时会将外部引入的jar包（比如在根目录下或resource文件下新加外部jar包）打包到项目jar-->
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

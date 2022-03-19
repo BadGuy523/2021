@@ -10,7 +10,11 @@ import org.apache.dubbo.config.annotation.DubboService;
   * @version v1.0
   */
 // 指定要注册的服务注册中心及版本号
-@DubboService(registry = {"shanghai","hunan"},version = "1.0")
+@DubboService(
+        // 指定该服务发布的注册中心
+        registry = {"shanghai","hunan"},
+        // 指定该服务的版本
+        version = "1.0")
 public class SayHelloServiceImpl implements ISayHelloService {
     @Override
     public String sayHello(String msg) {

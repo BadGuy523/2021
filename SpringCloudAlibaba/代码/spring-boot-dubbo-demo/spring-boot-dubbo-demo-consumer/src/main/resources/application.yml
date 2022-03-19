@@ -2,7 +2,7 @@ spring:
   application:
     name: spring-boot-dubbo-demo-consumer
 
-# 多服务注册中心，配置调用时的负载均衡策略
+# 多服务注册中心，配置调用时的负载均衡策略，先对注册中心负载，在对集群服务负载
 dubbo:
   registries:
     shanghai:
