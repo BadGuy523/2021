@@ -1,0 +1,2 @@
+scp -i /cloudserver/mackey /Users/a/Desktop/File/Study/GitHub/2021/SpringCloudAlibaba/代码/spring-boot-dubbo-demo/spring-boot-dubbo-demo-provider/target/spring-boot-dubbo-demo-provider.jar root@124.223.211.211:/dockerservers/dubbo/spring-boot-dubbo-demo-provider
+scp -i /cloudserver/mackey /Users/a/Desktop/File/Study/GitHub/2021/SpringCloudAlibaba/代码/spring-boot-dubbo-demo/spring-boot-dubbo-demo-consumer/target/spring-boot-dubbo-demo-consumer.jar root@124.223.211.211:/dockerservers/dubbo/spring-boot-dubbo-demo-consumer
