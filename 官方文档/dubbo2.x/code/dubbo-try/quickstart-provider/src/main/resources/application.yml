@@ -1,11 +1,11 @@
 dubbo:
   application:
-    id: quickstart
-    name: quickstart
+    name: provider
   scan:
     base-packages: com.dubbotry.service
   protocol:
     name: dubbo
     port: -1
+  # TODO:不要配置中心怎么发布和调用服务，
   registry:
     address: nacos://${serverip}:8848

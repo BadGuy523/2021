@@ -1,6 +1,10 @@
+# 必须配置dubbo服务应用名，或者spring.application.name，且不能有非法字符
+# 否则会报错：Injection of @DubboReference dependencies is failed;
+# nested exception is java.lang.IllegalStateException:
+# Invalid name="org.apache.dubbo.config.ApplicationConfig#0" contains illegal character,
+# only digit, letter, '-', '_' or '.' is legal
 dubbo:
   application:
-    id: consumer
     name: consumer
   registry:
     address: nacos://${serverip}:8848
