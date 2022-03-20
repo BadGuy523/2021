@@ -1,0 +1,6 @@
+dubbo:
+  application:
+    id: consumer
+    name: consumer
+  registry:
+    address: nacos://${serverip}:8848
