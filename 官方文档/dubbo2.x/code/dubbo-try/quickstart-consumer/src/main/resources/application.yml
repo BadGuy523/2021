@@ -8,3 +8,7 @@ dubbo:
     name: consumer
   registry:
     address: nacos://${serverip}:8848
+  consumer:
+    check: false # 关闭服务的启动时检查（没有提供者时报错）
+    retries: 2 # 非业务异常（服务突然不可用，超时等），dubbo默认会进行额外的最多2次重试
+    timeout: 1000 # 超时，用于测试超时与重试

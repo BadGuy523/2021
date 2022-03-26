@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
+    // 不用配置中心需要指明url
+    // @DubboReference(url = "dubbo://localhost:20880")
+    // 引用dubbo服务
     @DubboReference
     private LoginApi loginApi;
 

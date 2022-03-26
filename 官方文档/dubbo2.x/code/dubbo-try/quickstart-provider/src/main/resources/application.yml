@@ -2,10 +2,12 @@ dubbo:
   application:
     name: provider
   scan:
+    # 扫描dubbo服务的包路径
     base-packages: com.dubbotry.service
   protocol:
     name: dubbo
     port: -1
-  # TODO:不要配置中心怎么发布和调用服务，
+  # 不使用配置中心时address配置为N/A
   registry:
     address: nacos://${serverip}:8848
+    check: false # 关闭注册中心启动时检查（注册订阅失败时报错）
