@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjq.batchdemo.dao.origin.OriginDao">
+    <select id="queryUserList" resultType="com.zjq.batchdemo.model.User">
+        select
+        id,
+        name,
+        phone,
+        title,
+        email,
+        gender,
+        date_of_birth as dateOfBirth,
+        sys_create_time as sysCreateTime,
+        sys_create_user as sysCreateUser,
+        sys_update_time as sysUpdateTime,
+        sys_update_user as sysUpdateUser
+        from test_user
+    </select>
+</mapper>
